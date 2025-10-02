@@ -18,6 +18,11 @@ class User(rx.Model, table=True):
 
     username: str
     password: str
+    profile_photo: str = ""  # URL or path to profile photo
+    bio: str = ""  # User bio/description
+    display_name: str = ""  # Display name (different from username)
+    location: str = ""  # User location
+    website: str = ""  # User website
 
 
 class Tweet(rx.Model, table=True):
@@ -27,3 +32,10 @@ class Tweet(rx.Model, table=True):
     created_at: str
 
     author: str
+
+
+class Like(rx.Model, table=True):
+    """A table of Likes. Tracks which users liked which tweets."""
+
+    tweet_id: int = Field(primary_key=True)
+    username: str = Field(primary_key=True)
